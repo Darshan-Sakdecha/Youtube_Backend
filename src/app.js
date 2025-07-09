@@ -28,4 +28,15 @@ app.use(express.static("public"));
 
 app.use(cookieParser());
 
+
+
+//routes import 
+
+import userRouter from './routes/user.routes.js'
+
+//routes declaration
+//http://localhost:8000/api/v1/users/register
+//here "/api/v1" path is command production rule for routing.
+app.use("/api/v1/users",userRouter)
+
 export { app };
