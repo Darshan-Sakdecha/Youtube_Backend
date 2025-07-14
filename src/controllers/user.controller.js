@@ -38,15 +38,18 @@ const registerUser = asyncHandler(async (req, res) => {
   const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
   if(!avatarLocalPath){
-    throw new ApiError(400 , "Avatar file is Required!!");
+    throw new ApiError(400 , "Avatar file is Required!! CLIENT");
   }
-
+  // console.log(avatarLocalPath);
+  // console.log(coverImageLocalPath);
+  
   const avatar = await uploadOnCloudinary(avatarLocalPath);
   const coverImage = await uploadOnCloudinary(coverImageLocalPath);
 
   if(!avatar){
-    throw new ApiError(400, "avatar file is Required!!");
+    throw new ApiError(400, "avatar file is Required!! SERVER");
   }
+  // console.log(avatar);
 
   const user = await User.create({
     fullName,
